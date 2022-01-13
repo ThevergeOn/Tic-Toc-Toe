@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
+*, *::after, *::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --tile-size: 100px;
+  --mark-size: calc(var(--tile-size) * .9);
+}
+body{
+  background-color: aquamarine;
+  font-family: 'Press Start 2P', sans-serif;
+  font-size: 16px;
+}
+h1{
+  font-family: 'Press Start 2P', sans-serif;
+  text-align: center;
+  border: 1px solid rgb(0 0 0 / 38%);
+  margin: 20px auto;
+  padding: 10px;
+  width: 60%;
+}
+.board {
+  background-color: aliceblue;
+  width: 80%;
+  height: 500px;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  margin: 25px auto;
+  box-shadow: 17px 36px 135px 86px rgb(0 0 0 / 38%), 0 4px 20px 0 rgb(0 0 0 / 37%);
+}
+.tile {
+  width: 100%;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+.tile:first-child,
+.tile:nth-child(2),
+.tile:nth-child(3) {
+  border-top: none;
+}
+
+.tile:nth-child(3n + 1) {
+  border-left: none;
+}
+
+.tile:nth-child(3n + 3) {
+  border-right: none;
+}
+
+.tile:last-child,
+.tile:nth-child(8),
+.tile:nth-child(7) {
+  border-bottom: none;
+}
+.fill-o,
+.fill-x{
+  cursor: not-allowed;
+}
+.tile.fill-x::before,
+.tile.fill-x::after,
+.tile.fill-o::before {
+  background-color: black;
+}
+.tile.fill-x::before,
+.tile.fill-x::after{
+  content: '';
+  position: absolute;
+  width: calc(var(--mark-size) * .15);
+  height: var(--mark-size);
+}
+.tile.fill-x::before {
+  transform: rotate(45deg);
+}
+.tile.fill-x::after{
+  transform: rotate(-45deg);
+}
+.tile.fill-o::before,
+.tile.fill-o::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+}
+
+.tile.fill-o::before{
+  width: var(--mark-size);
+  height: var(--mark-size);
+}
+
+.tile.fill-o::after {
+  width: calc(var(--mark-size) * .7);
+  height: calc(var(--mark-size) * .7);
+  background-color: white;
+}
+.game-over::after,.draw::after{
+  content: "It's a Draw!";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+ text-align: center;
+ padding-top: 200px;
+  color: #000;
+  font-size: 5rem;
+}
+.winning-message {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .9);
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 3rem;
+  flex-direction: column;
+  text-align: center;
+}
+
+.winning-message button {
+  font-size: 2rem;
+  background-color: white;
+  border: 1px solid black;
+  padding: .25em .5em;
+  cursor: pointer;
+   font-family: 'Press Start 2P', sans-serif;
+}
+
+.winning-message button:hover {
+  background-color: black;
+  color: white;
+  border-color: white;
+}
+
+.winning-message.show {
+  display: flex;
+}
+
+
